@@ -38,19 +38,18 @@ class HomeController extends Controller
         if ($action == 'checkin') {
             Attendance::create([
                 'user_id' => $user->id,
+                'check_in' => Carbon::now(),
             ]);
             return redirect()->back()->with('success', '出席チェックインが正常に記録されました。');
 
         } else {
             $today = Carbon::now()->toDateString();
             Attendance::where('user_id', $user->id)
-                                ->whereDate('checkin', $today)
-                                ->update(['checkout' => Carbon::now()]);
+                                ->whereDate('check_in', $today)
+                                ->update(['check_out' => Carbon::now()]);
             return redirect()->back()->with('success', '出席チェックアウトが正常に記録されました。');
 
         }
-        
-
     }
 
     // public function showAllAttendance()

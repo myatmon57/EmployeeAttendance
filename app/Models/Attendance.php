@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Attendance extends Model
 {
@@ -12,6 +13,8 @@ class Attendance extends Model
     protected $table = 'Attendance';
     protected $fillable = [
         'user_id',
+        'check_in',
+        'check_out'
     ];
 
 
@@ -19,6 +22,4 @@ class Attendance extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    
 }
