@@ -12,7 +12,7 @@
         },
         {
           "src": "/resources/(.*)",
-          "dest": "/public/resources/"
+          "dest": "/resources/"
         },
         {
           "src": "/favicon/(.*)",
@@ -23,7 +23,6 @@
           "dest": "/api/index.php"
         }
       ],
-    "outputDirectory": "public",
     "env": {
         "APP_NAME": "従業員の出席",
         "APP_ENV": "production",
