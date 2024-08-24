@@ -8,11 +8,11 @@
     "routes": [
         {
             "src": "/css/(.*)",
-            "dest": "/resources/css/$1"
+            "dest": "/public/build/assets/$1"
         },
         {
             "src": "/js/(.*)",
-            "dest": "/resources/js/$1"
+            "dest": "/public/build/assets/$1"
         },
         {
           "src": "/favicon/(.*)",
