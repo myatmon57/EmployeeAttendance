@@ -2,19 +2,27 @@
     "version": 2,
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php@0.4.3"
+            "runtime": "vercel-php@0.5.4"
         }
     },
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
+          "src": "/build/(.*)",
+          "dest": "/public/build/"
         },
         {
-            "src": "/(css|js)/(.*)",
-            "dest": "public/$1/$2"
+          "src": "/resources/(.*)",
+          "dest": "/public/resources/"
+        },
+        {
+          "src": "/favicon/(.*)",
+          "dest": "/public/favicon/"
+        },
+        {
+          "src": "/(.*)",
+          "dest": "/api/index.php"
         }
-    ],
+      ],
     "outputDirectory": "public",
     "env": {
         "APP_NAME": "従業員の出席",
