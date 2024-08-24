@@ -6,27 +6,19 @@
       }
     },
     "routes": [
-        {
-            "src": "/css/(.*)",
-            "dest": "/build/assets/$1"
-        },
-        {
-            "src": "/js/(.*)",
-            "dest": "/build/assets/$1"
-        },
-        {
-          "src": "/favicon/(.*)",
-          "dest": "/favicon/"
-        },
-        {
-          "src": "/(.*)",
-          "dest": "/api/index.php"
-        },
-        {
-          "src": "/(.*)",
-          "dest": "/public/$1"
-        }
-      ],
+      {
+        "src": "/build/assets/(.*)",
+        "dest": "/public/build/assets/$1"
+      },
+      {
+        "src": "/favicon/(.*)",
+        "dest": "/public/favicon/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/api/index.php"
+      }
+    ],
     "env": {
       "APP_NAME": "従業員の出席",
       "APP_ENV": "production",
