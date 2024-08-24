@@ -7,12 +7,12 @@
     },
     "routes": [
         {
-          "src": "/build/(.*)",
-          "dest": "/public/build/"
+            "src": "/css/(.*)",
+            "dest": "/resources/css/$1"
         },
         {
-          "src": "/resources/(.*)",
-          "dest": "/resources/"
+            "src": "/js/(.*)",
+            "dest": "/resources/js/$1"
         },
         {
           "src": "/favicon/(.*)",
@@ -29,6 +29,7 @@
       "APP_KEY": "base64:AXm5GlVbYte0ljTLVD7+AQlZJEUlNJXhLJK3GmjyMAs=",
       "APP_DEBUG": "false",
       "APP_URL": "https://employee-attendance-drab.vercel.app",
+      "ASSET_URL": "https://employee-attendance-drab.vercel.app",
       "VERCEL_DEMO_MODE": "true",
       "APP_CONFIG_CACHE": "/tmp/config.php",
       "APP_EVENTS_CACHE": "/tmp/events.php",
