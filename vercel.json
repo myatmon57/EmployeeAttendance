@@ -8,19 +8,23 @@
     "routes": [
         {
             "src": "/css/(.*)",
-            "dest": "/public/build/assets/$1"
+            "dest": "/build/assets/$1"
         },
         {
             "src": "/js/(.*)",
-            "dest": "/public/build/assets/$1"
+            "dest": "/build/assets/$1"
         },
         {
           "src": "/favicon/(.*)",
-          "dest": "/public/favicon/"
+          "dest": "/favicon/"
         },
         {
           "src": "/(.*)",
           "dest": "/api/index.php"
+        },
+        {
+          "src": "/(.*)",
+          "dest": "/public/$1"
         }
       ],
     "env": {
