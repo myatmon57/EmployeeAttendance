@@ -1,15 +1,11 @@
 {
     "version": 2,
     "functions": {
-      "api/index.php": {
+      "api/*.php": {
         "runtime": "vercel-php@0.5.4"
       }
     },
     "routes": [
-      {
-        "src": "/build/(.*)",
-        "dest": "/public/build/$1"
-      },
       {
         "src": "/resources/(.*)",
         "dest": "/resources/$1"
@@ -18,11 +14,26 @@
         "src": "/favicon/(.*)",
         "dest": "/public/favicon/$1"
       },
+      { 
+        "src": "/(css|js)/(.*)$",
+        "dest": "/api/assets.php?type=$1&file=$2"
+      },
       {
         "src": "/(.*)",
         "dest": "/api/index.php"
       }
     ],
+    "scripts": {
+        "vercel": [
+          "@php -v",
+          "npm -v",
+          "npm install && npm run dev"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ]
+    },
     "env": {
       "APP_NAME": "従業員の出席",
       "APP_ENV": "production",
