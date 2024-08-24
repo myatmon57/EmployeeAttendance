@@ -28,7 +28,7 @@
         "APP_ENV": "production",
         "APP_KEY":"base64:AXm5GlVbYte0ljTLVD7+AQlZJEUlNJXhLJK3GmjyMAs=",
         "APP_DEBUG": "false",
-        "APP_URL": "https://test-blog-flax.vercel.app",
+        "APP_URL": "https://employee-attendance-drab.vercel.app",
         "VERCEL_DEMO_MODE": "true",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
