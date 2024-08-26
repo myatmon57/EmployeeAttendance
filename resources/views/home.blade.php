@@ -79,7 +79,7 @@
                             </div>
 
                             <!-- Submit Button -->
-                            <div class="col-md-4">
+                            <div class="col-md-4 align-content-end">
                                 <label>&nbsp;</label>
                                 <button type="submit" class="btn btn-primary btn-block">フィルタ</button>
                             </div>

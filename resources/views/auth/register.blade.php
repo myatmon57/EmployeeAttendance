@@ -40,6 +40,20 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="pc_name" class="col-md-4 col-form-label text-md-end">{{ __('パソコン名前') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="pc_name" type="text" class="form-control @error('pc_name') is-invalid @enderror" name="pc_name" value="{{ old('pc_name') }}" required autocomplete="pc_name" autofocus>
+
+                                @error('pc_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
 
                             <div class="col-md-6">
