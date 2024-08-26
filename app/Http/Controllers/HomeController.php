@@ -84,7 +84,7 @@ class HomeController extends Controller
             $status = 1;
         }
         if ($action == 'checkin') {
-            $checkInDataExist = Attendance::whereDate('check_in', $today)->Exists();
+            $checkInDataExist = Attendance::where('user_id', $user->id)->whereDate('check_in', $today)->Exists();
             info($checkInDataExist);
             if ($checkInDataExist) {
                 return redirect()->back()->with('error', '出席チェックインはすでに存在しています');
