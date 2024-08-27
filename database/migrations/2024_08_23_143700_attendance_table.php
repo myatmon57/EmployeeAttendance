@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('Attendance', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Adds the foreign key
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('check_in_pc_name');
             $table->timestamp('check_in')->nullable();
             $table->timestamp('check_out')->nullable();
             $table->timestamps();

@@ -37,19 +37,29 @@ class HomeController extends Controller
         if ($request->has('filter_status') && $request->input('filter_status') != '') {
             $query->where('status', $request->input('filter_status'));
         }
-    
+
+        if ($request->has('filter_device') && $request->input('filter_device') != '') {
+            $query->where('check_in_pc_name', $request->input('filter_device'));
+        }
+
         // Get the filtered or unfiltered attendance records
-        $attendances = $query->get();
+        $attendances = $query->paginate(5);
         $combinedData = [];
         // Access the user and their related attendance records
         if ($user) {
             foreach ($attendances as $attendance) {
-                $checkIn = Carbon::parse($attendance->check_in);
-                $checkOut = Carbon::parse($attendance->check_out);
-
+                $checkIn = $attendance->check_in ? Carbon::parse($attendance->check_in) : '';
+                $checkOut = $attendance->check_out ? Carbon::parse($attendance->check_out) : '';
                 $date = $checkIn->format('Y-m-d');
-                $checkInTime = $time = $checkIn->format('h:i A');
-                $checkOutTime = $time = $checkOut->format('h:i A');
+                if ($date == null) {
+                    $date = $checkOut->format('Y-m-d');
+                }
+                $checkInTime = $attendance->check_in ? $checkIn->format('h:i A') : '';
+                $checkOutTime =  $attendance->check_out ? $checkOut->format('h:i A') : '';
+                $hostCheck = 0;
+                if ($user->pc_name == $attendance->check_in_pc_name) {
+                    $hostCheck = 1;
+                }
 
                 $combinedData[] = [
                     'user_id' => $user->id,
@@ -63,10 +73,12 @@ class HomeController extends Controller
                     'attendance_commentOut' => $attendance->comment_out,
                     'attendance_checkIn' => $checkInTime,
                     'attendance_checkOut' => $checkOutTime,
+                    'hostCheck' => $hostCheck,
                 ];
             }
+        
         }
-        return view('home', compact('combinedData'));
+        return view('home', compact('combinedData', 'attendances'));
     }
 
     public function clickAttendance(Request $request)
@@ -77,36 +89,36 @@ class HomeController extends Controller
         $officeTime = Carbon::createFromTime(1, 0);  // Create a Carbon instance for 9:00 AM
         $checkStatus = Carbon::now();  // Get the current time as a Carbon instance
         $status = 0;
+        $hostName = gethostname();
         
         $today = Carbon::now()->toDateString();
                                        
         if ($checkStatus->greaterThan($officeTime)) {
             $status = 1;
         }
-        if ($action == 'checkin') {
-            $checkInDataExist = Attendance::where('user_id', $user->id)->whereDate('check_in', $today)->Exists();
-            info($checkInDataExist);
+        $checkInDataExist = Attendance::where('user_id', $user->id)->whereDate('check_in', $today)->Exists();
+            if ($action == 'checkin') {
             if ($checkInDataExist) {
                 return redirect()->back()->with('error', '出席チェックインはすでに存在しています');
             } else {
                 Attendance::create([
                     'user_id' => $user->id,
                     'comment' => $request->reason,
+                    'check_in_pc_name' => $hostName,
                     'status' => $status,
                     'check_in' => Carbon::now(),
                 ]);
                 return redirect()->back()->with('success', '出席チェックインが正常に記録されました。');
             }
         } else {
-            $attendance = Attendance::where('user_id', $user->id)
-                                    ->whereDate('check_in', $today);
-            if ($attendance) {
+            if ($checkInDataExist) {
                 Attendance::where('user_id', $user->id)
                 ->whereDate('check_in', $today)
                 ->update(['check_out' => Carbon::now(), 'comment_out' => $request->reason]);
             } else {
                 Attendance::create([
                     'user_id' => $user->id,
+                    'check_in_pc_name' => $hostName,
                     'comment_out' => $request->reason,
                     'status' => 1,
                     'check_out' => Carbon::now(),
