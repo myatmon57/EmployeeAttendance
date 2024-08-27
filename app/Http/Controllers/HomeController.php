@@ -28,6 +28,11 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
+        // test hostname on server
+        $clientIp = $_SERVER['REMOTE_ADDR']; // Get the client's IP address
+        $clientHostName = gethostbyaddr($clientIp); // Get the hostname
+        info($clientHostName);
+
         $query = $user->attendances();
         // Apply filtering if date or status filters are present
         if ($request->has('filter_date') && $request->input('filter_date') != '') {
