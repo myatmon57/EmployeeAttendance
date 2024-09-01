@@ -146,7 +146,7 @@ class HomeController extends Controller
         // Get the currently authenticated user
         $action = $request->action_flag;
         $user = Auth::user();
-        $officeTime = Carbon::createFromTime(1, 0);  // Create a Carbon instance for 9:00 AM
+        $officeTime = Carbon::createFromTime(9, 0);  // Create a Carbon instance for 9:00 AM
         $checkStatus = Carbon::now();  // Get the current time as a Carbon instance
         $status = 0;
         $hostName = gethostname();
