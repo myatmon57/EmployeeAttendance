@@ -31,7 +31,6 @@ class HomeController extends Controller
         // test hostname on server
         $clientIp = $_SERVER['REMOTE_ADDR']; // Get the client's IP address
         $clientHostName = gethostbyaddr($clientIp); // Get the hostname
-        echo('client host name' . $clientHostName);
 
         $query = $user->attendances();
         // Apply filtering if date or status filters are present
