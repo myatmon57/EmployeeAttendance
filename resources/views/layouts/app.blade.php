@@ -71,6 +71,11 @@
                                     </form>
                                 </div>
                             </li>
+                            @if (Auth::user()->role != 0)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('allAttendance') }}">{{ __('All Info') }}</a>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>
