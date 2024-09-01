@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    <div id="loading" style="display: none;">
+        <div class="spinner"></div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -149,14 +152,21 @@
         return Swal.fire({
             title: '確認',
             text: message,
-            icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'はい',
-            cancelButtonText: 'キャンセル'
+            cancelButtonText: 'キャンセル',
         }).then((result) => {
             if (result.isConfirmed) {
                 setFlag(action);
-                document.getElementById('actionForm').submit();
+                Swal.close(); // Close the SweetAlert dialog
+
+                // Show the loading spinner
+                document.getElementById('loading').style.display = 'block';
+
+                // Submit the form after a short delay to ensure the spinner is shown
+                setTimeout(() => {
+                    document.getElementById('actionForm').submit(); // Submit the form
+                }, 100); // Adjust delay as needed
             } else {
                 return false; // Cancel form submission
             }
