@@ -21,4 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/allAttendance', [App\Http\Controllers\HomeController::class, 'allAttendance'])->name('allAttendance');
 Route::post('/clickAttendance', [App\Http\Controllers\HomeController::class, 'clickAttendance'])->name('clickAttendance');
