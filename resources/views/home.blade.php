@@ -80,14 +80,14 @@
                             </div>
 
                             <!-- device Filter -->
-                            <div class="col-md-2">
+                            <!-- <div class="col-md-2">
                                 <label for="filter_device">チェックインデバイス</label>
                                 <select name="filter_device" id="filter_device" class="form-control">
                                     <option value="">全て</option>
                                     <option value="0" {{ request('filter_device') === '1' ? 'selected' : '' }}>オフィスデバイス</option>
                                     <option value="1" {{ request('filter_device') === '0' ? 'selected' : '' }}>その他</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <!-- Submit Button -->
                             <div class="col-md-4 align-content-end">

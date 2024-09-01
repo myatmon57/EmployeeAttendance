@@ -42,9 +42,9 @@ class HomeController extends Controller
             $query->where('status', $request->input('filter_status'));
         }
 
-        if ($request->has('filter_device') && $request->input('filter_device') != '') {
-            $query->where('check_in_pc_name', $request->input('filter_device'));
-        }
+        // if ($request->has('filter_device') && $request->input('filter_device') != '') {
+        //     $query->where('check_in_pc_name', $request->input('filter_device'));
+        // }
 
         // Get the filtered or unfiltered attendance records
         $attendances = $query->paginate(5);
