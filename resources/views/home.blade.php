@@ -19,18 +19,18 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{ route('clickAttendance') }}">
+                    <form id="actionForm" method="POST" action="{{ route('clickAttendance') }}">
                         @csrf
                         <input type="hidden" name="action_flag" id="action_flag" value="">
                         
                         <div class="row mb-3">
                             <div class="col-md-6 text-end">
-                                <button type="submit" class="btn btn-primary" onclick="setFlag('checkin')">
+                                <button type="button" class="btn btn-primary" onclick="confirmAction('checkin')">
                                     {{ __('チェックイン') }}
                                 </button>
                             </div>
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-secondary" onclick="setFlag('checkout')">
+                                <button type="button" class="btn btn-secondary" onclick="confirmAction('checkout')">
                                     {{ __('チェックアウト') }}
                                 </button>
                             </div>
@@ -143,6 +143,25 @@
 @endsection
 
 <script>
+
+    function confirmAction(action) {
+        let message = action === 'checkin' ? 'チェックインしますか？' : 'チェックアウトしますか？';
+        return Swal.fire({
+            title: '確認',
+            text: message,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'はい',
+            cancelButtonText: 'キャンセル'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setFlag(action);
+                document.getElementById('actionForm').submit();
+            } else {
+                return false; // Cancel form submission
+            }
+        });
+    }
     function setFlag(flag) {
         document.getElementById('action_flag').value = flag;
     }
