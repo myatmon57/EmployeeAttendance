@@ -76,7 +76,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('allAttendance') }}">{{ __('All Info') }}</a>
                                 </li>
+                                
                             @endif
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('allUserInfo') }}">{{ __('ユーザー情報') }}</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>

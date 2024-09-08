@@ -47,7 +47,7 @@ class HomeController extends Controller
         // }
 
         // Get the filtered or unfiltered attendance records
-        $attendances = $query->paginate(5);
+        $attendances = $query->paginate(5)->withQueryString();
         $combinedData = [];
         // Access the user and their related attendance records
         if ($user) {
@@ -108,7 +108,7 @@ class HomeController extends Controller
             });
         }
         // Get the filtered or unfiltered attendance records
-        $attendances = $query->paginate(10);
+        $attendances = $query->paginate(10)->withQueryString();
         $combinedData = [];
         // Access the user and their related attendance records
         foreach ($attendances as $attendance) {

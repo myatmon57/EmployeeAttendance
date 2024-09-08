@@ -22,4 +22,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/allAttendance', [App\Http\Controllers\HomeController::class, 'allAttendance'])->name('allAttendance');
+Route::get('/allUserInfo', [App\Http\Controllers\UserInfoController::class, 'index'])->name('allUserInfo');
 Route::post('/clickAttendance', [App\Http\Controllers\HomeController::class, 'clickAttendance'])->name('clickAttendance');
+Route::get('/users/export-csv', [App\Http\Controllers\UserInfoController::class, 'exportCsv'])->name('users.export-csv');

@@ -4,10 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <div class="alert alert-warning" role="alert">
+                今日はNyi Linn Htin さんと Zin Thandar Htunさんが掃除を担当します。
+            </div>
             <div class="card">
                 <div class="card-header card-header-large">{{ __('出席を追加') }}</div>
 
                 <div class="card-body">
+
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -143,13 +147,11 @@
 @endsection
 
 <script>
-
     function confirmAction(action) {
         let message = action === 'checkin' ? 'チェックインしますか？' : 'チェックアウトしますか？';
         return Swal.fire({
             title: '確認',
             text: message,
-            icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'はい',
             cancelButtonText: 'キャンセル'
