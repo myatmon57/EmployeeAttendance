@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <!-- <div class="alert alert-warning" role="alert">
-                今日の掃除担当者はNyi Linn HtinさんとZin Thandar Htunさんです。
-            </div> -->
+            <div class="alert alert-warning" role="alert">
+                今週の掃除担当者はPoe Wutt Hmone SanさんとMyat Monさんです。
+            </div>
             <div class="card">
                 <div class="card-header card-header-large">{{ __('出席を追加') }}</div>
 
