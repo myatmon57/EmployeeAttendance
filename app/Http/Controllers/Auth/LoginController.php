@@ -34,9 +34,12 @@ class LoginController extends Controller
     {
         // Instantiate MobileDetect to detect device
         $detect = new MobileDetect();  // <-- Correct class name
-
+       // test login
+        info('check device');
+        info($detect->isMobile());
         // Check if the device is a mobile phone
         if ($detect->isMobile()) {
+            info('tst');
             // Redirect back with an error if it is a mobile device
             return redirect()->back()->withErrors(['message' => 'Login from mobile devices is not allowed.']);
         }
