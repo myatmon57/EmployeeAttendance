@@ -79,7 +79,7 @@ class UserInfoController extends Controller
             ];
 
             // Define the columns for the CSV
-            $columns = ['社員番号', '社員名', 'メール', 'パソコン番号', 'ステータス'];
+            $columns = ['社員番号', '社員名', 'メール', 'アドレス', '電話番号', 'パソコン番号', 'ステータス'];
 
             // Create a callback to write the data
             $callback = function() use ($users, $columns) {
@@ -91,6 +91,8 @@ class UserInfoController extends Controller
                         $user->no,
                         $user->name,
                         $user->email,
+                        $user->address,
+                        $user->phone_number,
                         $user->pc_name,
                         $user->role == 0 ? 'ユーザー' : ($user->role == 1 ? '管理者' : 'マネージャー'),
                     ]);

@@ -52,6 +52,8 @@
                                             <th>社員番号</th>
                                             <th>社員名</th>
                                             <th>メール</th>
+                                            <th>アドレス</th>
+                                            <th>電話番号</th>
                                             <th>パソコン番号</th>
                                             <th>ステータス</th>
                                         </tr>
@@ -62,6 +64,8 @@
                                                 <td>{{ $user->no }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->phone_number}}</td>
                                                 <td>{{ $user->pc_name }}</td>
                                                 <td>{{ $user->role == 0 ? 'ユーザー' : ($user->role == 1 ? '管理者' : 'マネージャー') }}</td>
 
