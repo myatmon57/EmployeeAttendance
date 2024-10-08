@@ -45,6 +45,7 @@ class HomeController extends Controller
         // if ($request->has('filter_device') && $request->input('filter_device') != '') {
         //     $query->where('check_in_pc_name', $request->input('filter_device'));
         // }
+        $query->orderBy('check_in', 'desc');
 
         // Get the filtered or unfiltered attendance records
         $attendances = $query->paginate(5)->withQueryString();
@@ -108,6 +109,7 @@ class HomeController extends Controller
             });
         }
         // Get the filtered or unfiltered attendance records
+    $query->orderBy('check_in', 'desc');
         $attendances = $query->paginate(10)->withQueryString();
         $combinedData = [];
         // Access the user and their related attendance records
