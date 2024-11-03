@@ -129,11 +129,14 @@ class HomeController extends Controller
 
     $combinedData = [];
 
-    $query->orderBy('check_in', 'desc');
+
 
     // If filters are applied, get the paginated result, otherwise return an empty paginator
     if ($hasFilter) {
-        $attendances = $query->paginate(10)->withQueryString();
+        $query->join('users', 'Attendance.user_id', '=', 'users.id') // Join to include the users table
+        ->orderBy('users.no', 'asc')
+        ->orderBy('check_in', 'asc');
+        $attendances = $query->select('Attendance.*')->paginate(10)->withQueryString();
     } else {
         // Return an empty LengthAwarePaginator if no filter is applied
         $attendances = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
