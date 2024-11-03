@@ -6,15 +6,24 @@
         <div class="col-md-12">
             <div class="card" class="mt-5">
                 <div class="card-header card-header-large">{{ __('出席履歴') }}</div>
-
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <form method="get" action="{{ route('allAttendance') }}">
                         @csrf
                         <div class="row">
                             <!-- Date Filter -->
                             <div class="col-md-2">
-                                <label for="filter_date">日付</label>
-                                <input type="date" name="filter_date" id="filter_date" class="form-control" value="{{ request('filter_date') }}">
+                                <label for="from_date">開始日</label>
+                                <input type="date" name="from_date" id="from_date" class="form-control" value="{{ request('from_date') }}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="to_date">終了日</label>
+                                <input type="date" name="to_date" id="to_date" class="form-control" value="{{ request('to_date') }}">
                             </div>
 
                             <!-- Status Filter -->
@@ -42,7 +51,10 @@
                             <div class="col-md-4 align-content-end">
                                 <label>&nbsp;</label>
                                 <button type="submit" class="btn btn-primary btn-block">検索</button>
+
                                 <a href="{{ url()->current() }}" class="btn btn-secondary">クリア</a>
+                                <a href="{{ route('downloadAllAttendance', request()->query()) }}" class="btn btn-success">Export CSV</a>
+
                             </div>
                         </div>
                         <div class="container mt-4">

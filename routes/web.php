@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +24,4 @@ Route::get('/allAttendance', [App\Http\Controllers\HomeController::class, 'allAt
 Route::get('/allUserInfo', [App\Http\Controllers\UserInfoController::class, 'index'])->name('allUserInfo');
 Route::post('/clickAttendance', [App\Http\Controllers\HomeController::class, 'clickAttendance'])->name('clickAttendance');
 Route::get('/users/export-csv', [App\Http\Controllers\UserInfoController::class, 'exportCsv'])->name('users.export-csv');
+Route::get('/attendance/export-csv', [App\Http\Controllers\HomeController::class, 'exportCsv'])->name('downloadAllAttendance');

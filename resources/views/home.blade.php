@@ -69,8 +69,13 @@
                         <div class="row">
                             <!-- Date Filter -->
                             <div class="col-md-2">
-                                <label for="filter_date">日付</label>
-                                <input type="date" name="filter_date" id="filter_date" class="form-control" value="{{ request('filter_date') }}">
+                                <label for="from_date">開始日</label>
+                                <input type="date" name="from_date" id="from_date" class="form-control" value="{{ request('from_date') }}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="to_date">終了日</label>
+                                <input type="date" name="to_date" id="to_date" class="form-control" value="{{ request('to_date') }}">
                             </div>
 
                             <!-- Status Filter -->
